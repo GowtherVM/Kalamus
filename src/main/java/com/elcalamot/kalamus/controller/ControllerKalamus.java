@@ -31,18 +31,20 @@ public class ControllerKalamus {
         this.demanar = demanar;
     }
 
-    public void iniciarKalamus(String[] args) {
-
-        switch (args[1]) {
+    public void iniciarKalamus(String[] args) throws PlanetaExcepcio {
+        FuncionesModelo.testsPlanetas();
+        
+        
+        switch (args[0]) {
             case "planet":
                  try {
-                switch (args[2]) {
+                switch (args[1]) {
 
                     case "add":
                         FuncionesModelo.crearPlaneta(args);
                         break;
                     case "list":
-                        FuncionesModelo.listPlanetas(args);
+                        sistemas.listPlanetas();
                         break;
                     default:
                         System.out.println("Comando no existe");
@@ -53,7 +55,7 @@ public class ControllerKalamus {
             }
 
             case "being":
-                switch (args[2]) {
+                switch (args[1]) {
                     case "add":
                         break;
                     case "list":
@@ -66,6 +68,8 @@ public class ControllerKalamus {
                 System.out.println("Caso incorrecto.");
 
         }
+        
+        
 
     }
 }

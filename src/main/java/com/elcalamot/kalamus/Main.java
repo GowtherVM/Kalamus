@@ -6,6 +6,7 @@ package com.elcalamot.kalamus;
 
 import com.elcalamot.kalamus.controller.ControllerKalamus;
 import com.elcalamot.kalamus.exceptions.DemanarDades;
+import com.elcalamot.kalamus.exceptions.PlanetaExcepcio;
 import com.elcalamot.kalamus.model.SistemasDB;
 import com.elcalamot.kalamus.persistencia.Persistencia;
 import java.io.IOException;
@@ -27,8 +28,11 @@ public class Main {
         
         ControllerKalamus controller = new ControllerKalamus(sistemas, pers, demanar);
         
+        try{
         controller.iniciarKalamus(args);
-        
+        }catch(PlanetaExcepcio a){
+            System.out.println("A saltado algo.");
+        }
         
     }
 }

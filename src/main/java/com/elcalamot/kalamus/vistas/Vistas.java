@@ -12,6 +12,6 @@ import com.elcalamot.kalamus.model.Planeta;
  */
 public class Vistas {
     public static void mostrarPlaneta(Planeta planeta){
-        System.out.println( planeta.getNomplan() + ": ");
+        System.out.println( planeta.getNomplan() + ": " + planeta.getClima() + " ,"+planeta.getPoblacio_max()+" , Flora vermella: " + planeta.getFlora_vermella()+" , Vida acuatica: " + planeta.getEssers_aquatics());
     }
 }

@@ -17,10 +17,10 @@ public class Planeta {
     private String nomplan;
     private int poblacio_max;
     private Clima clima;
-    private Respuesta flora_vermella;
-    private Respuesta essers_aquatics;
+    private boolean flora_vermella;
+    private boolean essers_aquatics;
 
-    public Planeta(String nomplan, int poblacio_max, Clima clima, Respuesta flora_vermella, Respuesta essers_aquatics) {
+    public Planeta(String nomplan, int poblacio_max, Clima clima,boolean flora_vermella, boolean essers_aquatics) {
 
         this.nomplan = nomplan;
         this.poblacio_max = poblacio_max;
@@ -49,11 +49,11 @@ public class Planeta {
         return clima;
     }
 
-    public Respuesta getFlora_vermella() {
+    public boolean getFlora_vermella() {
         return flora_vermella;
     }
 
-    public Respuesta getEssers_aquatics() {
+    public boolean getEssers_aquatics() {
         return essers_aquatics;
     }
 
