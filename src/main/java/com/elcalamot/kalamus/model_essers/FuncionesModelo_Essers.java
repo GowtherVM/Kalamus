@@ -17,6 +17,10 @@ import java.util.ArrayList;
  * @author A200238614
  */
 public class FuncionesModelo_Essers {
+    
+    public static void crearEsser(String[] args){
+        
+    }
 
     public static String getGenere(boolean opcio) {
         if (opcio == true) {
@@ -93,10 +97,10 @@ public class FuncionesModelo_Essers {
     }
     
     public static boolean reglasNibirians(Nibirians nib, Planeta destino){
-        if(destino.getFlora_vermella() == false){
+        if(destino.getFlora_vermella().equalsIgnoreCase("No")){
             return false;
         }
-        if(nib.isPeix().equalsIgnoreCase("Si") && destino.getEssers_aquatics() == false){
+        if(nib.isPeix().equalsIgnoreCase("Si") && destino.getEssers_aquatics().equalsIgnoreCase("No")){
             return false;
         }
         
@@ -107,11 +111,15 @@ public class FuncionesModelo_Essers {
     public static void testEssers(){
         SistemasDB sis = SistemasDB.getInstance();
         Planeta pla = sis.devolverPlaneta("Tierra");
+        Planeta marte = sis.devolverPlaneta("Marte");
         
         Humans nuevo = new Humans("Sarah","humans",21,"femeni");
         Humans nuevo1 = new Humans("Pau","humans",23,"masculi");
+        Klingon nuevo2 =  new Klingon("Eric",5,"klingon");
+        
         
         pla.addEsser(nuevo);
         pla.addEsser(nuevo1);
+        marte.addEsser(nuevo2);
     }
 }

@@ -8,10 +8,10 @@ package com.elcalamot.kalamus.model_essers;
  *
  * @author A200238614
  */
-public class Kingon extends Essers {
+public class Klingon extends Essers {
     private int fuerza;
 
-    public Kingon(String nom,int fuerza, String esser) {
+    public Klingon(String nom,int fuerza, String esser) {
         super(nom,esser);
         this.fuerza = fuerza;
     }

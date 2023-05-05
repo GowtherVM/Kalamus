@@ -10,7 +10,7 @@ import com.elcalamot.kalamus.model_essers.Andorians;
 import com.elcalamot.kalamus.model_essers.Essers;
 import com.elcalamot.kalamus.model_essers.Ferengi;
 import com.elcalamot.kalamus.model_essers.Humans;
-import com.elcalamot.kalamus.model_essers.Kingon;
+import com.elcalamot.kalamus.model_essers.Klingon;
 import com.elcalamot.kalamus.model_essers.Nibirians;
 import com.elcalamot.kalamus.model_essers.Vulcanians;
 import com.elcalamot.kalamus.vistas.Vistas;
@@ -91,7 +91,7 @@ public class SistemasDB {
         for (String key : keys) {
             ArrayList<Planeta> planetas = galaxiaplanetas.get(key);
             for (Planeta planeta : planetas) {
-                Vistas.mostrarPlaneta(planeta);
+               ControllerKalamus.generarCadenasPlanetas(planeta);
             }
         }
     }
@@ -101,6 +101,7 @@ public class SistemasDB {
     }
 
     public boolean existePlaneta(Planeta planeta) {
+        
         return galaxiaplanetas.containsValue(planeta);
     }
 
@@ -111,7 +112,7 @@ public class SistemasDB {
             ArrayList<Planeta> planetas = galaxiaplanetas.get(key);
             System.out.println("Galaxia:" + key);
             for (Planeta planeta : planetas) {
-                ControllerKalamus.generarCadenas(planeta);
+                ControllerKalamus.generarCadenasEssers(planeta);
 
             }
         }

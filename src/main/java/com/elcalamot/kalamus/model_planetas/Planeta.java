@@ -59,12 +59,18 @@ public class Planeta {
         return clima;
     }
 
-    public boolean getFlora_vermella() {
-        return flora_vermella;
+    public String getFlora_vermella() {
+        if(this.flora_vermella == true){
+            return "Si";
+        }
+        return "No";
     }
 
-    public boolean getEssers_aquatics() {
-        return essers_aquatics;
+    public String getEssers_aquatics() {
+        if(this.essers_aquatics == true){
+            return "Si";
+        }
+        return "No";
     }
 
 }
