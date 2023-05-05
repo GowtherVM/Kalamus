@@ -11,8 +11,8 @@ package com.elcalamot.kalamus.model_essers;
 public class Vulcanians extends Essers {
     private int meditacio;
 
-    public Vulcanians(String esser, int meditacio) {
-        super(esser);
+    public Vulcanians(String nom,String esser, int meditacio) {
+        super(nom,esser);
         this.meditacio = meditacio;
     }
 

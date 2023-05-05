@@ -7,6 +7,8 @@ package com.elcalamot.kalamus.model_essers;
 import com.elcalamot.kalamus.enums.Enums;
 import com.elcalamot.kalamus.enums.Enums.Categoria;
 import com.elcalamot.kalamus.enums.Enums.Esser;
+import java.util.ArrayList;
+
 
 /**
  *
@@ -14,16 +16,29 @@ import com.elcalamot.kalamus.enums.Enums.Esser;
  */
 public class Essers {
     
+    private String nom;
     private Esser esser;
     private Categoria categoria;
 
-    public Essers(String esser) {
+
+    public Essers(String nom,String esser) {
         
+        this.nom = nom;
         this.esser = Enums.elegirEsser(esser);
         this.categoria = Enums.elegirCategoria(this.esser); 
                
     }
 
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    
+    
     public Esser getEsser() {
         return esser;
     }

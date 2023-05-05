@@ -6,6 +6,8 @@ package com.elcalamot.kalamus.model_planetas;
 
 import com.elcalamot.kalamus.enums.Enums;
 import com.elcalamot.kalamus.exceptions.PlanetaExcepcio;
+import com.elcalamot.kalamus.model_essers.Humans;
+import com.elcalamot.kalamus.vistas.Vistas;
 import java.io.IOException;
 
 /**
@@ -55,6 +57,8 @@ public class FuncionesModelo_Planetas {
         return false;
 
     }
+        
+
     
 
 }

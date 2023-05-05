@@ -12,14 +12,14 @@ public class Nibirians extends Essers {
 
     private boolean peix;
 
-    public Nibirians( boolean peix, String esser) {
-        super(esser);
+    public Nibirians(String nom, boolean peix, String esser) {
+        super(nom,esser);
 
         this.peix = peix;
     }
 
-    public boolean isPeix() {
-        return peix;
+    public String isPeix() {
+        return FuncionesModelo_Essers.getPeix(peix);
     }
 
     public void setPeix(boolean peix) {

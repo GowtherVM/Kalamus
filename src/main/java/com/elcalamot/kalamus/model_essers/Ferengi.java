@@ -11,8 +11,8 @@ package com.elcalamot.kalamus.model_essers;
 public class Ferengi extends Essers {
     private double latinum;
 
-    public Ferengi(double latinum, String esser) {
-        super(esser);
+    public Ferengi(String nom,double latinum, String esser) {
+        super(nom,esser);
         this.latinum = latinum;
     }
 

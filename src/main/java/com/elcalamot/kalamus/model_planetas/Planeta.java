@@ -19,7 +19,7 @@ public class Planeta {
     private Clima clima;
     private boolean flora_vermella;
     private boolean essers_aquatics;
-    private ArrayList <Essers> poblacion = new ArrayList();
+    private ArrayList poblacion = new ArrayList();
 
     public Planeta(String nomplan, int poblacio_max, Clima clima, boolean flora_vermella, boolean essers_aquatics) {
 

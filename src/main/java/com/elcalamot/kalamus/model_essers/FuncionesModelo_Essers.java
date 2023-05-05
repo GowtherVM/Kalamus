@@ -17,23 +17,32 @@ import java.util.ArrayList;
  */
 public class FuncionesModelo_Essers {
 
-    public static String getGenere(boolean opcio, String mensaje) {
+    public static String getGenere(boolean opcio) {
         if (opcio == true) {
-            return "maculino";
+            return "masculi";
         } else if (opcio == false) {
-            return "femenino";
-        } else {
-            System.out.println(mensaje);
-        }
+            return "femeni";
+        } 
 
         return "femenino";
 
     }
+    
+    public static String getPeix(boolean opcio) {
+        if (opcio == true) {
+            return "Si";
+        } else if (opcio == false) {
+            return "No";
+        } 
+
+        return "No";
+
+    }
 
     public static boolean elegirGenere(String opcio, String mensaje) {
-        if (opcio.equalsIgnoreCase("masculino")) {
+        if (opcio.equalsIgnoreCase("masculi")) {
             return true;
-        } else if (opcio.equalsIgnoreCase("femenino")) {
+        } else if (opcio.equalsIgnoreCase("femeni")) {
             return false;
         } else {
             System.out.println(mensaje);
@@ -86,7 +95,7 @@ public class FuncionesModelo_Essers {
         if(destino.getFlora_vermella() == false){
             return false;
         }
-        if(nib.isPeix() == true && destino.getEssers_aquatics() == false){
+        if(nib.isPeix().equalsIgnoreCase("Si") && destino.getEssers_aquatics() == false){
             return false;
         }
         

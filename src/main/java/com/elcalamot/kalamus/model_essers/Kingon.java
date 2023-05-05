@@ -11,8 +11,8 @@ package com.elcalamot.kalamus.model_essers;
 public class Kingon extends Essers {
     private int fuerza;
 
-    public Kingon(int fuerza, String esser) {
-        super(esser);
+    public Kingon(String nom,int fuerza, String esser) {
+        super(nom,esser);
         this.fuerza = fuerza;
     }
 
