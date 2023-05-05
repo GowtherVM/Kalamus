@@ -4,7 +4,7 @@
  */
 package com.elcalamot.kalamus.vistas;
 
-import com.elcalamot.kalamus.model.Planeta;
+import com.elcalamot.kalamus.model_planetas.Planeta;
 
 /**
  *

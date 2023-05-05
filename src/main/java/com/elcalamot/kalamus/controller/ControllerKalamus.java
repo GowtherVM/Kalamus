@@ -4,16 +4,12 @@
  */
 package com.elcalamot.kalamus.controller;
 
-import com.elcalamot.kalamus.enums.Enums;
-import com.elcalamot.kalamus.enums.Enums.Clima;
-import com.elcalamot.kalamus.enums.Enums.Respuesta;
 import com.elcalamot.kalamus.exceptions.DemanarDades;
 import com.elcalamot.kalamus.exceptions.PlanetaExcepcio;
-import com.elcalamot.kalamus.model.FuncionesModelo;
-import com.elcalamot.kalamus.model.Planeta;
-import com.elcalamot.kalamus.model.SistemasDB;
+import com.elcalamot.kalamus.model_planetas.FuncionesModelo_Planetas;
+
+import com.elcalamot.kalamus.model_planetas.SistemasDB;
 import com.elcalamot.kalamus.persistencia.Persistencia;
-import java.io.IOException;
 
 /**
  *
@@ -32,16 +28,15 @@ public class ControllerKalamus {
     }
 
     public void iniciarKalamus(String[] args) throws PlanetaExcepcio {
-        FuncionesModelo.testsPlanetas();
-        
-        
+        FuncionesModelo_Planetas.testsPlanetas();
+
         switch (args[0]) {
             case "planet":
                  try {
                 switch (args[1]) {
 
                     case "add":
-                        FuncionesModelo.crearPlaneta(args);
+                        FuncionesModelo_Planetas.crearPlaneta(args);
                         break;
                     case "list":
                         sistemas.listPlanetas();
@@ -68,8 +63,6 @@ public class ControllerKalamus {
                 System.out.println("Caso incorrecto.");
 
         }
-        
-        
 
     }
 }

@@ -16,12 +16,20 @@ public class Enums {
         FRED, CALID, TEMPERAT
     };
 
-    public static enum Respuesta {
-        YES, NO
+    public static enum Esser {
+        HUMANS,VULCANIANS,ANDORIANS,NIBIRIANS,KLINGON,FERENGI
+    };
+    
+    public static enum Categoria {
+        I,II,III,O
+    };
+    
+    public static enum Rango {
+        DEFENSOR,ENTRENADOR,LLUITADOR,CAVALLER
     };
 
     public static Clima elegirClima(String clima) throws PlanetaExcepcio {
-        Clima nuevoclima = Clima.FRED;
+        Clima nuevoclima = Clima.TEMPERAT;
 
         switch (clima.toLowerCase()) {
             case "fred":
@@ -35,23 +43,80 @@ public class Enums {
                 break;
 
             default:
-                System.out.println("No existe ese clima");
+                System.out.println("No existe ese clima. Se assignara temperat");
         }
 
         return nuevoclima;
     }
-
-    public static boolean elegirOpcion(String opcio, String mensaje) throws PlanetaExcepcio {
-        if (opcio.equalsIgnoreCase("yes")) {
-            return true;
-        } else if (opcio.equalsIgnoreCase("no")) {
-            return false;
-        } else {
-            System.out.println(mensaje);
+    
+    public static Esser elegirEsser(String nombre){
+        Esser nuevoesser = Esser.HUMANS;
+        
+        switch (nombre.toLowerCase()) {
+            case "humans":
+                nuevoesser = Esser.HUMANS;
+                break;
+            case "vulcanians":
+                nuevoesser = Esser.VULCANIANS;
+                break;
+            case "andorians":
+                nuevoesser = Esser.ANDORIANS;
+                break;
+            case "nibirians":
+                nuevoesser = Esser.NIBIRIANS;
+                break;
+            case "klingon":
+                nuevoesser = Esser.KLINGON;
+                break;
+            case "ferengi":
+                nuevoesser = Esser.FERENGI;
+                break;
+            default:
+                System.out.println("El esser no existe. Se assignara human.");
+                
         }
+        
+        
+        return nuevoesser;
+        
+    }
+    
+    public static Categoria elegirCategoria(Esser especie){
+        Categoria sucategoria = Categoria.O;
+        
+        switch (especie) {
+            case HUMANS,FERENGI:
+                sucategoria = Categoria.I;
+                break;
+            case VULCANIANS,KLINGON:
+                sucategoria = Categoria.III;
+                break;
+            case ANDORIANS,NIBIRIANS:
+                sucategoria = Categoria.II;
+                break;
+            default:
+                System.out.println("El esser no li correspon cap catgoria. Es quedara amb O.");
+        }
+        
+        return sucategoria;
+    }
 
-        return false;
-
+    public static Rango elegirRango(String rango){
+        switch (rango.toLowerCase()){
+            case "defensor":
+                return Rango.DEFENSOR;
+            case "lluitador":
+                return Rango.LLUITADOR;
+            case "cavaller":
+                return Rango.CAVALLER;
+            case "entrenador":
+                return Rango.ENTRENADOR;
+            default:
+                System.out.println("Rango incorrecto, se assigna Entrenador.");
+                
+        }
+          
+        return Rango.ENTRENADOR;
     }
 
 }

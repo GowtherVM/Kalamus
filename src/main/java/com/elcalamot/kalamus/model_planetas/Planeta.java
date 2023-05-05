@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.elcalamot.kalamus.model;
+package com.elcalamot.kalamus.model_planetas;
 
 import com.elcalamot.kalamus.enums.Enums.Clima;
-import com.elcalamot.kalamus.enums.Enums.Respuesta;
+import com.elcalamot.kalamus.model_essers.Essers;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,24 +14,33 @@ import com.elcalamot.kalamus.enums.Enums.Respuesta;
  */
 public class Planeta {
 
-
     private String nomplan;
     private int poblacio_max;
     private Clima clima;
     private boolean flora_vermella;
     private boolean essers_aquatics;
+    private ArrayList <Essers> poblacion = new ArrayList();
 
-    public Planeta(String nomplan, int poblacio_max, Clima clima,boolean flora_vermella, boolean essers_aquatics) {
+    public Planeta(String nomplan, int poblacio_max, Clima clima, boolean flora_vermella, boolean essers_aquatics) {
 
         this.nomplan = nomplan;
         this.poblacio_max = poblacio_max;
-        this.clima= clima;
+        this.clima = clima;
         this.flora_vermella = flora_vermella;
         this.essers_aquatics = essers_aquatics;
     }
 
     public String getNomplan() {
         return nomplan;
+    }
+
+    public void addEsser(Essers nuevo) {
+        poblacion.add(nuevo);
+
+    }
+    
+    public ArrayList getLista(){
+        return poblacion;
     }
 
     public void setNomplan(String nomplan) {
@@ -56,9 +66,5 @@ public class Planeta {
     public boolean getEssers_aquatics() {
         return essers_aquatics;
     }
-
-
-
-
 
 }

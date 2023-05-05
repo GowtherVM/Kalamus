@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.elcalamot.kalamus.model;
+package com.elcalamot.kalamus.model_planetas;
 
 import com.elcalamot.kalamus.exceptions.PlanetaExcepcio;
 import com.elcalamot.kalamus.vistas.Vistas;
