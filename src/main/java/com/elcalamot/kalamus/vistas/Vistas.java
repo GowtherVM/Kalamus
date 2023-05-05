@@ -12,6 +12,7 @@ import com.elcalamot.kalamus.model_essers.Kingon;
 import com.elcalamot.kalamus.model_essers.Nibirians;
 import com.elcalamot.kalamus.model_essers.Vulcanians;
 import com.elcalamot.kalamus.model_planetas.Planeta;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,7 +23,7 @@ public class Vistas {
         System.out.println( planeta.getNomplan() + ": " + planeta.getClima() + " ,"+planeta.getPoblacio_max()+" , Flora vermella: " + planeta.getFlora_vermella()+" , Vida acuatica: " + planeta.getEssers_aquatics());
     }
     
-    public static void mostrarHumans(Humans huma){
+    /* public static void mostrarHumans(Humans huma){
         System.out.println("            Nombre: "+ huma.getNom());
         System.out.println("                Edad: "+huma.getEdad());
         System.out.println("                Genere: "+huma.getGenere());
@@ -47,6 +48,14 @@ public class Vistas {
     public static void mostrarVulcanians(Vulcanians vulc){
         System.out.println("            Nombre: "+ vulc.getNom());
         System.out.println("                Meditacio: "+ vulc.getMeditacio());
+    } */
+    
+    public static void mostrarInformacionEssers(ArrayList <String> informacion){
+        
+        for(String inf: informacion){
+            System.out.println(inf);
+        }
+        
     }
     
 }

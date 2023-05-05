@@ -4,6 +4,7 @@
  */
 package com.elcalamot.kalamus.model_planetas;
 
+import com.elcalamot.kalamus.controller.ControllerKalamus;
 import com.elcalamot.kalamus.exceptions.PlanetaExcepcio;
 import com.elcalamot.kalamus.model_essers.Andorians;
 import com.elcalamot.kalamus.model_essers.Essers;
@@ -71,6 +72,19 @@ public class SistemasDB {
         return null;
 
     }
+    
+    public Planeta devolverPlaneta(String nomplaneta){
+        Set<String> keys = galaxiaplanetas.keySet();
+        for (String key : keys) {
+            ArrayList<Planeta> planetas = galaxiaplanetas.get(key);
+            for (Planeta planeta : planetas) {
+                if(planeta.getNomplan().equalsIgnoreCase(nomplaneta)){
+                    return planeta;
+                }
+            }
+        }
+        return null;
+    }
 
     public void listPlanetas() {
         Set<String> keys = galaxiaplanetas.keySet();
@@ -91,35 +105,16 @@ public class SistemasDB {
     }
 
     public void listEssers() {
+
         Set<String> keys = galaxiaplanetas.keySet();
         for (String key : keys) {
             ArrayList<Planeta> planetas = galaxiaplanetas.get(key);
             System.out.println("Galaxia:" + key);
             for (Planeta planeta : planetas) {
-                ArrayList<Humans> poblacio_humans = planeta.getLista();
-                ArrayList<Andorians> poblacio_andorians = planeta.getLista();
-                ArrayList<Ferengi> poblacio_ferengi = planeta.getLista();
-                ArrayList<Kingon> poblacio_kingon = planeta.getLista();
-                ArrayList<Nibirians> poblacio_nibirians = planeta.getLista();
-                ArrayList<Vulcanians> poblacio_vulcanians = planeta.getLista();
-                System.out.println("    Planeta: "+planeta.getNomplan());
-                System.out.println("        Raza: Humas");
-                if(poblacio_humans.isEmpty() == false){for (Humans tipo : poblacio_humans) {Vistas.mostrarHumans(tipo);}}
-                System.out.println("        Raza: Andorians");
-                if(poblacio_andorians.isEmpty() == false){for (Andorians tipo : poblacio_andorians) {Vistas.mostrarAndorians(tipo);}}
-                System.out.println("        Raza: Ferengis");
-                if(poblacio_ferengi.isEmpty() == false){for (Ferengi tipo : poblacio_ferengi) {Vistas.mostrarFerengi(tipo);}}
-                System.out.println("        Raza: Kingons");
-                if(poblacio_kingon.isEmpty() == false){for (Kingon tipo : poblacio_kingon) {Vistas.mostrarKlingon(tipo);}}
-                System.out.println("        Raza: Nibiritians");
-                if(poblacio_nibirians.isEmpty() == false){for (Nibirians tipo : poblacio_nibirians) {Vistas.mostrarNibirians(tipo);}}
-                System.out.println("        Raza: Vulcanians");
-                if(poblacio_vulcanians.isEmpty() == false){for (Vulcanians tipo : poblacio_vulcanians) {Vistas.mostrarVulcanians(tipo);}}
-               
+                ControllerKalamus.generarCadenas(planeta);
+
             }
         }
     }
 
 }
-
-

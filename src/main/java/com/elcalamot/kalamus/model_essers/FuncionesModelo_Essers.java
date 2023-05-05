@@ -9,6 +9,7 @@ import static com.elcalamot.kalamus.enums.Enums.Clima.FRED;
 import static com.elcalamot.kalamus.enums.Enums.Esser.ANDORIANS;
 import static com.elcalamot.kalamus.enums.Enums.Esser.VULCANIANS;
 import com.elcalamot.kalamus.model_planetas.Planeta;
+import com.elcalamot.kalamus.model_planetas.SistemasDB;
 import java.util.ArrayList;
 
 /**
@@ -100,5 +101,17 @@ public class FuncionesModelo_Essers {
         }
         
         return true;
+    }
+    
+    
+    public static void testEssers(){
+        SistemasDB sis = SistemasDB.getInstance();
+        Planeta pla = sis.devolverPlaneta("Tierra");
+        
+        Humans nuevo = new Humans("Sarah","humans",21,"femeni");
+        Humans nuevo1 = new Humans("Pau","humans",23,"masculi");
+        
+        pla.addEsser(nuevo);
+        pla.addEsser(nuevo1);
     }
 }

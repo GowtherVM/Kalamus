@@ -28,11 +28,9 @@ public class Main {
         
         ControllerKalamus controller = new ControllerKalamus(sistemas, pers, demanar);
         
-        try{
+       
         controller.iniciarKalamus(args);
-        }catch(PlanetaExcepcio a){
-            System.out.println("A saltado algo.");
-        }
+        
         
     }
 }

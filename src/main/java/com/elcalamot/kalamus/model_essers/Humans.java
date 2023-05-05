@@ -12,7 +12,7 @@ public class Humans extends Essers {
     private int edad;
     private boolean genere;
 
-    public Humans(String nom, String esser,int edad, String genere) throws CloneNotSupportedException {
+    public Humans(String nom, String esser,int edad, String genere)  {
         super(nom ,esser);
         this.edad = edad;
         this.genere = FuncionesModelo_Essers.elegirGenere(genere, "");

@@ -28,7 +28,7 @@ public class Enums {
         DEFENSOR,ENTRENADOR,LLUITADOR,CAVALLER
     };
 
-    public static Clima elegirClima(String clima) throws PlanetaExcepcio {
+    public static Clima elegirClima(String clima){
         Clima nuevoclima = Clima.TEMPERAT;
 
         switch (clima.toLowerCase()) {

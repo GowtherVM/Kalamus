@@ -16,7 +16,9 @@ import java.io.IOException;
  */
 public class FuncionesModelo_Planetas {
 
-    public static void crearPlaneta(String[] args) throws PlanetaExcepcio{
+    public static void crearPlaneta(String[] args) {
+        
+        try{
         SistemasDB sistemas = SistemasDB.getInstance();
         Enums.Clima clima = Enums.elegirClima(args[5]);
         boolean opcion1 = elegirOpcion(args[6], "ERROR: La flora solo puede ser SI/NO. Se ha puesto NO de manera automatica.");
@@ -32,9 +34,13 @@ public class FuncionesModelo_Planetas {
 
         Planeta nuevoplaneta = new Planeta(args[2].toLowerCase(), Integer.parseInt(args[4]), clima, opcion1, opcion2);
         sistemas.addPlaneta(args[3].toUpperCase(), nuevoplaneta);
+        
+        } catch (PlanetaExcepcio e){
+            System.out.println("Error crear planeta.");
+        }
     }
     
-    public static void testsPlanetas() throws PlanetaExcepcio{
+    public static void testsPlanetas(){
         SistemasDB sistemas = SistemasDB.getInstance();
         
         sistemas.addGalaxia("SistemaSolar");
