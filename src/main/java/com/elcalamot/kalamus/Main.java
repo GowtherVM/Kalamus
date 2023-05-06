@@ -6,7 +6,6 @@ package com.elcalamot.kalamus;
 
 import com.elcalamot.kalamus.controller.ControllerKalamus;
 import com.elcalamot.kalamus.exceptions.DemanarDades;
-import com.elcalamot.kalamus.exceptions.PlanetaExcepcio;
 import com.elcalamot.kalamus.model_planetas.SistemasDB;
 import com.elcalamot.kalamus.persistencia.Persistencia;
 import java.io.IOException;

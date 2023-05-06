@@ -14,7 +14,7 @@ import com.elcalamot.kalamus.enums.Enums.Rango;
 public class Andorians extends Essers {
     private Rango rango;
 
-    public Andorians(String nom,String rango, String esser) {
+    public Andorians(String nom,String esser, String rango ) {
         super(nom, esser);
         this.rango = Enums.elegirRango(rango);
     }

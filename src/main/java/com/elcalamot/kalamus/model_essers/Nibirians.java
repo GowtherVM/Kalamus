@@ -12,7 +12,7 @@ public class Nibirians extends Essers {
 
     private boolean peix;
 
-    public Nibirians(String nom, boolean peix, String esser) {
+    public Nibirians(String nom,String esser, boolean peix ) {
         super(nom,esser);
 
         this.peix = peix;

@@ -6,9 +6,7 @@ package com.elcalamot.kalamus.model_planetas;
 
 import com.elcalamot.kalamus.enums.Enums;
 import com.elcalamot.kalamus.exceptions.PlanetaExcepcio;
-import com.elcalamot.kalamus.model_essers.Humans;
-import com.elcalamot.kalamus.vistas.Vistas;
-import java.io.IOException;
+
 
 /**
  *
@@ -23,6 +21,7 @@ public class FuncionesModelo_Planetas {
         Enums.Clima clima = Enums.elegirClima(args[5]);
         boolean opcion1 = elegirOpcion(args[6], "ERROR: La flora solo puede ser SI/NO. Se ha puesto NO de manera automatica.");
         boolean opcion2 = elegirOpcion(args[7],"ERROR: La vida acuatica solo puede ser SI/NO. Se ha puesto NO de manera automatica");
+        
         if (sistemas.comprobarGalaxia(args[3].toUpperCase()) != null) {
             throw new PlanetaExcepcio(0);
         }
@@ -52,7 +51,7 @@ public class FuncionesModelo_Planetas {
     
     
         public static boolean elegirOpcion(String opcio, String mensaje) throws PlanetaExcepcio {
-        if (opcio.equalsIgnoreCase("yes")) {
+        if (opcio.equalsIgnoreCase("si")) {
             return true;
         } else if (opcio.equalsIgnoreCase("no")) {
             return false;

@@ -4,7 +4,6 @@
  */
 package com.elcalamot.kalamus.enums;
 
-import com.elcalamot.kalamus.exceptions.PlanetaExcepcio;
 
 /**
  *
@@ -43,7 +42,7 @@ public class Enums {
                 break;
 
             default:
-                System.out.println("No existe ese clima. Se assignara temperat");
+                System.out.println("No existe ese clima. Se assignara temperat.");
         }
 
         return nuevoclima;

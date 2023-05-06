@@ -5,7 +5,6 @@
 package com.elcalamot.kalamus.controller;
 
 import com.elcalamot.kalamus.exceptions.DemanarDades;
-import com.elcalamot.kalamus.exceptions.PlanetaExcepcio;
 import com.elcalamot.kalamus.model_essers.Andorians;
 import com.elcalamot.kalamus.model_essers.Ferengi;
 import com.elcalamot.kalamus.model_essers.FuncionesModelo_Essers;
@@ -19,6 +18,7 @@ import com.elcalamot.kalamus.model_planetas.Planeta;
 import com.elcalamot.kalamus.model_planetas.SistemasDB;
 import com.elcalamot.kalamus.persistencia.Persistencia;
 import com.elcalamot.kalamus.vistas.Vistas;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -37,7 +37,7 @@ public class ControllerKalamus {
         this.demanar = demanar;
     }
 
-    public void iniciarKalamus(String[] args) {
+    public void iniciarKalamus(String[] args) throws IOException {
         FuncionesModelo_Planetas.testsPlanetas();
         FuncionesModelo_Essers.testEssers();
 

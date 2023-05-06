@@ -11,7 +11,7 @@ package com.elcalamot.kalamus.model_essers;
 public class Klingon extends Essers {
     private int fuerza;
 
-    public Klingon(String nom,int fuerza, String esser) {
+    public Klingon(String nom, String esser,int fuerza) {
         super(nom,esser);
         this.fuerza = fuerza;
     }

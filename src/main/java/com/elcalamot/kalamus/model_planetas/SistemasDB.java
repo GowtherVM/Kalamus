@@ -6,14 +6,6 @@ package com.elcalamot.kalamus.model_planetas;
 
 import com.elcalamot.kalamus.controller.ControllerKalamus;
 import com.elcalamot.kalamus.exceptions.PlanetaExcepcio;
-import com.elcalamot.kalamus.model_essers.Andorians;
-import com.elcalamot.kalamus.model_essers.Essers;
-import com.elcalamot.kalamus.model_essers.Ferengi;
-import com.elcalamot.kalamus.model_essers.Humans;
-import com.elcalamot.kalamus.model_essers.Klingon;
-import com.elcalamot.kalamus.model_essers.Nibirians;
-import com.elcalamot.kalamus.model_essers.Vulcanians;
-import com.elcalamot.kalamus.vistas.Vistas;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;

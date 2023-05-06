@@ -5,7 +5,7 @@
 package com.elcalamot.kalamus.persistencia;
 
 
-import com.elcalamot.kalamus.exceptions.DemanarDades;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;

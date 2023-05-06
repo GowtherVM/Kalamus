@@ -7,7 +7,7 @@ package com.elcalamot.kalamus.model_essers;
 import com.elcalamot.kalamus.enums.Enums;
 import com.elcalamot.kalamus.enums.Enums.Categoria;
 import com.elcalamot.kalamus.enums.Enums.Esser;
-import java.util.ArrayList;
+
 
 
 /**

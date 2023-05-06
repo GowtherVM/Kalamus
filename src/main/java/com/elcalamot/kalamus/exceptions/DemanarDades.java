@@ -5,7 +5,6 @@
  */
 package com.elcalamot.kalamus.exceptions;
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -57,9 +56,29 @@ public class DemanarDades {
         } while (numero <= minim);
         return numero;
     }
+
+    public static boolean demanarEnter(int enter, int minim, int max, String miss) throws IOException {
+
+        if (enter <= minim && enter >= max) {
+            
+            System.out.println(miss + minim + " i mes petit que " + max);
+            return false;
+        }
+
+        return true;
+    }
     
- 
-    
+        public static boolean demanarEnter(int enter, int minim, String miss) throws IOException {
+
+        if (enter <= minim) {
+            
+            System.out.println(miss + minim + ".");
+            return false;
+        }
+
+        return true;
+    }
+
     public static boolean demanarBoolean(String missatge, String opcioTrue, String opcioFalse) throws IOException {
         BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
         boolean opcio = false;
@@ -104,7 +123,5 @@ public class DemanarDades {
         } while (numero <= minim);
         return numero;
     }
-    
 
-       
 }
