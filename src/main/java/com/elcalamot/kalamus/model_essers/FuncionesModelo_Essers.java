@@ -22,7 +22,7 @@ public class FuncionesModelo_Essers {
 
     public static void crearEsser(String[] args) throws IOException {
         SistemasDB sis = SistemasDB.getInstance();
-        Planeta planeta = sis.devolverPlaneta(args[4]);
+        Planeta planeta = sis.comprobarPlaneta(args[4]);
 
         switch (args[3].toLowerCase()) {
             case "huma":
@@ -179,15 +179,30 @@ public class FuncionesModelo_Essers {
 
     public static void testEssers() {
         SistemasDB sis = SistemasDB.getInstance();
-        Planeta pla = sis.devolverPlaneta("Tierra");
-        Planeta marte = sis.devolverPlaneta("Marte");
+        Planeta tierra = sis.comprobarPlaneta("Tierra");
+        Planeta marte = sis.comprobarPlaneta("Marte");
 
         Humans nuevo = new Humans("Sarah", "humans", 21, "femeni");
         Humans nuevo1 = new Humans("Pau", "humans", 23, "masculi");
-        Klingon nuevo2 = new Klingon("Eric", "klingon", 5);
-
-        pla.addEsser(nuevo);
-        pla.addEsser(nuevo1);
-        marte.addEsser(nuevo2);
+        Klingon kling = new Klingon("Eric", "klingon", 5);
+        Nibirians nib = new Nibirians("Nibpez","nibirians",true);
+        Andorians andor = new Andorians("Andor1", "andorians","defensor");
+        Vulcanians vulc = new Vulcanians("Vulc1","vulcanians",5);
+        tierra.addEsser(vulc);
+        
+        if (reglasVA(andor, tierra) == true) {
+                    tierra.addEsser(andor);
+                }
+        
+        if (reglasNibirians(nib, marte) == true) {
+                    marte.addEsser(nib);
+                }
+        
+        tierra.addEsser(nuevo);
+        tierra.addEsser(nuevo1);
+        if (reglasKlingon(marte) == true){
+            marte.addEsser(kling);
+        }
+        
     }
 }

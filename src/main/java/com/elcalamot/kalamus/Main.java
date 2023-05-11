@@ -22,8 +22,12 @@ public class Main {
         Persistencia pers = new Persistencia();
         DemanarDades demanar = new DemanarDades();
         
-        pers.comprobarRuta("/planets",".csv");
-        pers.comprobarRuta("/beings",".csv");
+        
+        pers.comprobarRuta("/planets",".txt");
+        pers.comprobarRuta("/beings",".txt");
+        pers.generarDBP();
+        pers.generarDBE();
+
         
         ControllerKalamus controller = new ControllerKalamus(sistemas, pers, demanar);
         

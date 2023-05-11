@@ -19,15 +19,27 @@ public class Planeta {
     private Clima clima;
     private boolean flora_vermella;
     private boolean essers_aquatics;
-    private ArrayList poblacion = new ArrayList();
+    private ArrayList<Essers> poblacion = new ArrayList();
 
-    public Planeta(String nomplan, int poblacio_max, Clima clima, boolean flora_vermella, boolean essers_aquatics) {
+    public Planeta(String nomplan, int poblacio_max, Clima clima, String flora_vermella, String essers_aquatics) {
 
         this.nomplan = nomplan;
         this.poblacio_max = poblacio_max;
         this.clima = clima;
-        this.flora_vermella = flora_vermella;
-        this.essers_aquatics = essers_aquatics;
+        
+        if (flora_vermella.equalsIgnoreCase("yes")) {
+            this.flora_vermella = true;
+        } else if (flora_vermella.equalsIgnoreCase("no")) {
+            this.flora_vermella = false;
+        }
+        
+        if (essers_aquatics.equalsIgnoreCase("yes")) {
+            this.essers_aquatics = true;
+        } else if (essers_aquatics.equalsIgnoreCase("no")) {
+            this.essers_aquatics = false;
+        }
+        
+        
     }
 
     public String getNomplan() {
@@ -38,8 +50,8 @@ public class Planeta {
         poblacion.add(nuevo);
 
     }
-    
-    public ArrayList getLista(){
+
+    public ArrayList<Essers> getLista() {
         return poblacion;
     }
 
@@ -60,17 +72,17 @@ public class Planeta {
     }
 
     public String getFlora_vermella() {
-        if(this.flora_vermella == true){
-            return "Si";
+        if (this.flora_vermella == true) {
+            return "yes";
         }
-        return "No";
+        return "no";
     }
 
     public String getEssers_aquatics() {
-        if(this.essers_aquatics == true){
-            return "Si";
+        if (this.essers_aquatics == true) {
+            return "yes";
         }
-        return "No";
+        return "no";
     }
 
 }

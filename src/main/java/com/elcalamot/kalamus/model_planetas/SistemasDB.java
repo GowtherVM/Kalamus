@@ -39,33 +39,40 @@ public class SistemasDB {
 
     public void addPlaneta(String galaxiaexist, Planeta newplaneta) {
 
-        galaxiaplanetas.get(galaxiaexist).add(newplaneta);
-
+        ArrayList <Planeta> planetas = galaxiaplanetas.get(galaxiaexist);
+        if(planetas != null){
+            planetas.add(newplaneta);
+        }
+        
     }
 
     public String comprobarGalaxia(String galaxia) throws PlanetaExcepcio {
-        boolean keyexist = galaxiaplanetas.containsKey(galaxia);
-        if (keyexist = false) {
+        boolean keyexist = galaxiaplanetas.containsKey(galaxia.toUpperCase());
+        
+        if (keyexist == false) {
             return null;
         }
 
         return galaxia;
     }
 
-    public Planeta comprobarPlaneta(String nomplaneta, String galaxia) throws PlanetaExcepcio {
-        ArrayList<Planeta> listaplanetas = galaxiaplanetas.get(galaxia);
+   /* public Planeta comprobarPlaneta(String nomplaneta) throws PlanetaExcepcio {
+        ArrayList<Planeta> listaplanetas = galaxiaplanetas.get(galaxia.toUpperCase());
+        if(listaplanetas == null){
+            return null;
+        }
 
         for (Planeta elplaneta : listaplanetas) {
-            if (elplaneta.getNomplan().equalsIgnoreCase(nomplaneta)) {
+            if (elplaneta.getNomplan().equalsIgnoreCase(nomplaneta.toLowerCase())) {
                 return elplaneta;
             }
         }
 
         return null;
 
-    }
+    } */
     
-    public Planeta devolverPlaneta(String nomplaneta){
+    public Planeta comprobarPlaneta(String nomplaneta){
         Set<String> keys = galaxiaplanetas.keySet();
         for (String key : keys) {
             ArrayList<Planeta> planetas = galaxiaplanetas.get(key);

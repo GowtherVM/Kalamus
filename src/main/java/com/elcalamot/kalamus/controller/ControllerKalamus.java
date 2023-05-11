@@ -6,6 +6,7 @@ package com.elcalamot.kalamus.controller;
 
 import com.elcalamot.kalamus.exceptions.DemanarDades;
 import com.elcalamot.kalamus.model_essers.Andorians;
+import com.elcalamot.kalamus.model_essers.Essers;
 import com.elcalamot.kalamus.model_essers.Ferengi;
 import com.elcalamot.kalamus.model_essers.FuncionesModelo_Essers;
 import com.elcalamot.kalamus.model_essers.Humans;
@@ -38,8 +39,10 @@ public class ControllerKalamus {
     }
 
     public void iniciarKalamus(String[] args) throws IOException {
-        FuncionesModelo_Planetas.testsPlanetas();
-        FuncionesModelo_Essers.testEssers();
+
+        //FuncionesModelo_Planetas.testsPlanetas();
+        //FuncionesModelo_Essers.testEssers();
+        Persistencia.cambiarDatosP("poblacio_actual", "10", "venus");
 
         switch (args[0]) {
             case "planet":
@@ -91,13 +94,13 @@ public class ControllerKalamus {
         ArrayList<Nibirians> poblacio_nibirians = new ArrayList();
         ArrayList<Vulcanians> poblacio_vulcanians = new ArrayList();
         
-        for (Object lista : planeta_essers.getLista()) {
-            if (lista.getClass() == Humans.class) { Humans huma = (Humans) lista; poblacio_humans.add(huma);}
-            if (lista.getClass() == Andorians.class) { Andorians andor = (Andorians) lista; poblacio_andorians.add(andor);}
-            if (lista.getClass() == Ferengi.class) { Ferengi fer = (Ferengi) lista; poblacio_ferengi.add(fer);}
-            if (lista.getClass() == Klingon.class) { Klingon kin = (Klingon) lista; poblacio_kingon.add(kin);}
-            if (lista.getClass() == Nibirians.class) { Nibirians nib = (Nibirians) lista; poblacio_nibirians.add(nib);}
-            if (lista.getClass() == Vulcanians.class) { Vulcanians vul = (Vulcanians) lista; poblacio_vulcanians.add(vul);}
+        for (Essers esser : planeta_essers.getLista()) {
+            if (esser instanceof Humans) { Humans huma = (Humans) esser; poblacio_humans.add(huma);}
+            else if (esser instanceof Andorians) { Andorians andor = (Andorians) esser; poblacio_andorians.add(andor);}
+            else if (esser instanceof Ferengi) { Ferengi fer = (Ferengi) esser; poblacio_ferengi.add(fer);}
+            else if (esser instanceof Klingon) { Klingon kin = (Klingon) esser; poblacio_kingon.add(kin);}
+            else if (esser instanceof Nibirians) { Nibirians nib = (Nibirians) esser; poblacio_nibirians.add(nib);}
+            else if (esser instanceof Vulcanians) { Vulcanians vul = (Vulcanians) esser; poblacio_vulcanians.add(vul);}
                    
         }
         if(planeta_essers.getLista().isEmpty() == false){
