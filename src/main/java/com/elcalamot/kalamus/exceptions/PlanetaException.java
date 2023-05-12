@@ -8,7 +8,7 @@ import java.util.List;
  *
  * @author pau
  */
-public class PlanetaExcepcio extends Exception {
+public class PlanetaException extends Exception {
     
 
     public static final int GALAXIA_EXIST = 0;
@@ -21,7 +21,7 @@ public class PlanetaExcepcio extends Exception {
     
     private final int code;
 
-    public PlanetaExcepcio(int code) {
+    public PlanetaException(int code) {
         this.code = code;
     }
 

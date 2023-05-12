@@ -30,12 +30,12 @@ public class ControllerKalamus {
 
     private SistemasDB sistemas;
     private Persistencia persistencia;
-    private DemanarDades demanar;
 
-    public ControllerKalamus(SistemasDB sistemas, Persistencia persistencia, DemanarDades demanar) {
+
+    public ControllerKalamus(SistemasDB sistemas, Persistencia persistencia) {
         this.sistemas = sistemas;
         this.persistencia = persistencia;
-        this.demanar = demanar;
+
     }
 
     public void iniciarKalamus(String[] args) throws IOException {
@@ -78,7 +78,7 @@ public class ControllerKalamus {
                 }
                 break;
             default:
-                System.out.println("Caso incorrecto. Debe indicar como primer valor (planets/being)");
+                System.out.println("Caso incorrecto. Debe indicar como primer valor (planet/being)");
 
         }
 

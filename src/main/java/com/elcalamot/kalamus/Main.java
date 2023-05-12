@@ -5,9 +5,11 @@
 package com.elcalamot.kalamus;
 
 import com.elcalamot.kalamus.controller.ControllerKalamus;
-import com.elcalamot.kalamus.exceptions.DemanarDades;
+import com.elcalamot.kalamus.exceptions.PlanetaException;
+
 import com.elcalamot.kalamus.model_planetas.SistemasDB;
 import com.elcalamot.kalamus.persistencia.Persistencia;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -16,20 +18,23 @@ import java.io.IOException;
  */
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, FileNotFoundException, PlanetaException {
         
         SistemasDB sistemas = SistemasDB.getInstance();
         Persistencia pers = new Persistencia();
-        DemanarDades demanar = new DemanarDades();
         
+        pers.comprobarRuta("/planets",".csv");
+        pers.comprobarRuta("/beings",".csv");
+
+        // FuncionesModelo_Planetas.testsPlanetas();
+        // FuncionesModelo_Essers.testEssers();
         
-        pers.comprobarRuta("/planets",".txt");
-        pers.comprobarRuta("/beings",".txt");
+
         pers.generarDBP();
         pers.generarDBE();
 
         
-        ControllerKalamus controller = new ControllerKalamus(sistemas, pers, demanar);
+        ControllerKalamus controller = new ControllerKalamus(sistemas, pers);
         
        
         controller.iniciarKalamus(args);

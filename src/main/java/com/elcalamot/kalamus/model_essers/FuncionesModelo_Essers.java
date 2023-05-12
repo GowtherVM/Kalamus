@@ -9,8 +9,10 @@ import static com.elcalamot.kalamus.enums.Enums.Clima.FRED;
 import static com.elcalamot.kalamus.enums.Enums.Esser.ANDORIANS;
 import static com.elcalamot.kalamus.enums.Enums.Esser.VULCANIANS;
 import com.elcalamot.kalamus.exceptions.DemanarDades;
+import com.elcalamot.kalamus.exceptions.PlanetaException;
 import com.elcalamot.kalamus.model_planetas.Planeta;
 import com.elcalamot.kalamus.model_planetas.SistemasDB;
+import com.elcalamot.kalamus.persistencia.Persistencia;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -21,55 +23,104 @@ import java.util.ArrayList;
 public class FuncionesModelo_Essers {
 
     public static void crearEsser(String[] args) throws IOException {
+        try{
         SistemasDB sis = SistemasDB.getInstance();
-        Planeta planeta = sis.comprobarPlaneta(args[4]);
+        Planeta planeta = sis.comprobarPlaneta(args[4].toLowerCase());
+
 
         switch (args[3].toLowerCase()) {
+            
             case "huma":
-                if (DemanarDades.demanarEnter(Integer.parseInt(args[5]), 0, 130, "La edad a de ser mes gran que ") == true) {
+                
+                if (sis.comprobarEsserP(args[2].toLowerCase(), planeta.getNomplan()) == false) {
+                    if (DemanarDades.demanarEnter(Integer.parseInt(args[5]), 0, 130, "La edad a de ser mes gran que ") == true) {
 
-                    Humans huma = new Humans(args[2], "humans", Integer.parseInt(args[5]), args[6]);
-                    planeta.addEsser(huma);
+                        Humans huma = new Humans(args[2], "huma", Integer.parseInt(args[5]), args[6]);
+                        planeta.addEsser(huma);
+                        Persistencia.anadirEsser(huma, planeta);
+                        Persistencia.cambiarDatosP("poblacio_actual", "", planeta.getNomplan());
+                        System.out.println("Añadido correctamente.");
+                    }
+                } else {
+                    System.out.println("Ya hay un esser con el nombre "+args[2].toLowerCase()+" en el planeta "+planeta.getNomplan()+".");
                 }
 
                 break;
             case "andoria":
+                if (sis.comprobarEsserP(args[2].toLowerCase(), planeta.getNomplan()) == false) {
+                    Andorians andor = new Andorians(args[2], "andoria", args[5]);
 
-                Andorians andor = new Andorians(args[2], "andorians", args[5]);
-
-                if (reglasVA(andor, planeta) == true) {
-                    planeta.addEsser(andor);
+                    if (reglasVA(andor, planeta) == true) {
+                        planeta.addEsser(andor);
+                        Persistencia.anadirEsser(andor, planeta);
+                        System.out.println("Añadido correctamente.");
+                    }
+                } else {
+                    System.out.println("Ya hay un esser con ese nombre "+args[2].toLowerCase()+" en el planeta "+planeta.getNomplan()+".");
                 }
+
                 break;
             case "ferengi":
-                if (reglasFerengi(planeta) == true && DemanarDades.demanarEnter(Integer.parseInt(args[5]), 0, "La edad a de ser mes gran que ") == true) {
-                    Ferengi fer = new Ferengi(args[2], "ferengi", Double.parseDouble(args[5]));
-                    planeta.addEsser(fer);
+                if (sis.comprobarEsserP(args[2].toLowerCase(), planeta.getNomplan()) == false) {
+                    if (reglasFerengi(planeta) == true && DemanarDades.demanarEnter(Integer.parseInt(args[5]), 0, "La edad a de ser mes gran que ") == true) {
+                        Ferengi fer = new Ferengi(args[2], "ferengi", Double.parseDouble(args[5]));
+                        planeta.addEsser(fer);
+                        Persistencia.anadirEsser(fer, planeta);
+                        System.out.println("Añadido correctamente.");
+                    }
+                } else {
+                    System.out.println("Ya hay un esser con ese nombre "+args[2].toLowerCase()+" en el planeta "+planeta.getNomplan()+".");
                 }
+
                 break;
             case "vulcania":
-                if (DemanarDades.demanarEnter(Integer.parseInt(args[5]), 0, 10, "La meditacio a de ser mes gran que ") == true) {
-                    Vulcanians vulc = new Vulcanians(args[2], "vulcanians", Integer.parseInt(args[5]));
-                    if (reglasVA(vulc, planeta) == true) {
-                        planeta.addEsser(vulc);
+                if (sis.comprobarEsserP(args[2].toLowerCase(), planeta.getNomplan()) == false) {
+                    if (DemanarDades.demanarEnter(Integer.parseInt(args[5]), 0, 10, "La meditacio a de ser mes gran que ") == true) {
+                        Vulcanians vulc = new Vulcanians(args[2], "vulcania", Integer.parseInt(args[5]));
+                        if (reglasVA(vulc, planeta) == true) {
+                            planeta.addEsser(vulc);
+                            Persistencia.anadirEsser(vulc, planeta);
+                            System.out.println("Añadido correctamente.");
+                        }
                     }
+                } else {
+                    System.out.println("Ya hay un esser con ese nombre "+args[2].toLowerCase()+" en el planeta "+planeta.getNomplan()+".");
                 }
+
                 break;
             case "nibirian":
-                Nibirians nib = new Nibirians(args[2], "nibirians", getPeix(args[5]));
+                if (sis.comprobarEsserP(args[2].toLowerCase(), planeta.getNomplan()) == false) {
+                    Nibirians nib = new Nibirians(args[2], "nibiria", getPeix(args[5]));
 
-                if (reglasNibirians(nib, planeta) == true) {
-                    planeta.addEsser(nib);
+                    if (reglasNibirians(nib, planeta) == true) {
+                        planeta.addEsser(nib);
+                        Persistencia.anadirEsser(nib, planeta);
+                        System.out.println("Añadido correctamente.");
+                    }
+                } else {
+                    System.out.println("Ya hay un esser con ese nombre "+args[2].toLowerCase()+" en el planeta "+planeta.getNomplan()+".");
                 }
+
                 break;
 
             case "klingon":
-                if (reglasKlingon(planeta) == true && DemanarDades.demanarEnter(Integer.parseInt(args[5]), 50, 350, "La força a de ser mes gran que ") == true) {
-                    Klingon kling = new Klingon(args[2], "klingon", Integer.parseInt(args[5]));
-                    planeta.addEsser(kling);
+                if (sis.comprobarEsserP(args[2].toLowerCase(), planeta.getNomplan()) == false) {
+                    if (reglasKlingon(planeta) == true && DemanarDades.demanarEnter(Integer.parseInt(args[5]), 50, 350, "La força a de ser mes gran que ") == true) {
+                        Klingon kling = new Klingon(args[2], "klingon", Integer.parseInt(args[5]));
+                        planeta.addEsser(kling);
+                        Persistencia.anadirEsser(kling, planeta);
+                        System.out.println("Añadido correctamente.");
+                    }
+                } else {
+                    System.out.println("Ya hay un esser con ese nombre "+args[2].toLowerCase()+" en el planeta "+planeta.getNomplan()+".");
                 }
-                break;
 
+                break;
+                
+        }
+        
+        }catch(NullPointerException e){
+            e.getMessage();
         }
     }
 
@@ -177,32 +228,24 @@ public class FuncionesModelo_Essers {
         return true;
     }
 
-    public static void testEssers() {
+    public static void testEssers() throws IOException, PlanetaException {
         SistemasDB sis = SistemasDB.getInstance();
-        Planeta tierra = sis.comprobarPlaneta("Tierra");
-        Planeta marte = sis.comprobarPlaneta("Marte");
+        Planeta tierra = sis.comprobarPlaneta("tierra");
+        Planeta marte = sis.comprobarPlaneta("marte");
 
         Humans nuevo = new Humans("Sarah", "humans", 21, "femeni");
         Humans nuevo1 = new Humans("Pau", "humans", 23, "masculi");
         Klingon kling = new Klingon("Eric", "klingon", 5);
-        Nibirians nib = new Nibirians("Nibpez","nibirians",true);
-        Andorians andor = new Andorians("Andor1", "andorians","defensor");
-        Vulcanians vulc = new Vulcanians("Vulc1","vulcanians",5);
+        Nibirians nib = new Nibirians("Nibpez", "nibirians", true);
+        Andorians andor = new Andorians("Andor1", "andorians", "defensor");
+        Vulcanians vulc = new Vulcanians("Vulc1", "vulcanians", 5);
         tierra.addEsser(vulc);
-        
-        if (reglasVA(andor, tierra) == true) {
-                    tierra.addEsser(andor);
-                }
-        
-        if (reglasNibirians(nib, marte) == true) {
-                    marte.addEsser(nib);
-                }
-        
+
+        tierra.addEsser(andor);
+        marte.addEsser(nib);
         tierra.addEsser(nuevo);
         tierra.addEsser(nuevo1);
-        if (reglasKlingon(marte) == true){
-            marte.addEsser(kling);
-        }
-        
+        marte.addEsser(kling);
+
     }
 }

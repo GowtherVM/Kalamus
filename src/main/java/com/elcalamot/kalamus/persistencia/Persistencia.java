@@ -5,7 +5,7 @@
 package com.elcalamot.kalamus.persistencia;
 
 import com.elcalamot.kalamus.enums.Enums;
-import com.elcalamot.kalamus.enums.Enums.Esser;
+import com.elcalamot.kalamus.exceptions.PlanetaException;
 
 import com.elcalamot.kalamus.model_essers.Andorians;
 import com.elcalamot.kalamus.model_essers.Essers;
@@ -57,27 +57,30 @@ public class Persistencia {
 
     }
 
-    public static void anadirEsser(Essers esser, Planeta planeta, String galaxia) throws IOException {
-        File file = new File(System.getProperty("user.home") + "/.kalamus/being.txt");
+    public static void anadirEsser(Essers esser, Planeta planeta) throws IOException {
+        SistemasDB sis = SistemasDB.getInstance();
+        String galaxia = sis.devolverGalaxiaP(planeta.getNomplan());
+        File file = new File(System.getProperty("user.home") + "/.kalamus/beings.csv");
         String contenido = "ERROR";
+
         if (esser instanceof Humans) {
             Humans huma = (Humans) esser;
-            contenido = huma.getNom() + "," + "humans" + "," + huma.getEdad() + "," + huma.getGenere() + "," + planeta.getNomplan() + "," + galaxia;
+            contenido = huma.getNom() + "," + "huma" + "," + huma.getEdad() + "," + huma.getGenere() + "," + planeta.getNomplan().toLowerCase() + "," + galaxia.toUpperCase();
         } else if (esser instanceof Andorians) {
             Andorians andor = (Andorians) esser;
-            contenido = andor.getNom() + "," + "andorians" + "," + andor.getRango() + "," + planeta.getNomplan() + "," + galaxia;
+            contenido = andor.getNom() + "," + "andoria" + "," + andor.getRango() + "," + planeta.getNomplan().toLowerCase() + "," + galaxia.toUpperCase();
         } else if (esser instanceof Ferengi) {
             Ferengi fer = (Ferengi) esser;
-            contenido = fer.getNom() + "," + "ferengi" + "," + fer.getLatinum() + "," + planeta.getNomplan() + "," + galaxia;
+            contenido = fer.getNom() + "," + "ferengi" + "," + fer.getLatinum() + "," + planeta.getNomplan().toLowerCase() + "," + galaxia.toUpperCase();
         } else if (esser instanceof Klingon) {
             Klingon kin = (Klingon) esser;
-            contenido = kin.getNom() + "," + "klingon" + "," + kin.getFuerza() + "," + planeta.getNomplan() + "," + galaxia;
+            contenido = kin.getNom() + "," + "klingon" + "," + kin.getFuerza() + "," + planeta.getNomplan().toLowerCase() + "," + galaxia.toUpperCase();
         } else if (esser instanceof Nibirians) {
             Nibirians nib = (Nibirians) esser;
-            contenido = nib.getNom() + "," + "nibirians" + "," + nib.isPeix() + "," + planeta.getNomplan() + "," + galaxia;
+            contenido = nib.getNom() + "," + "nibiria" + "," + nib.isPeix() + "," + planeta.getNomplan().toLowerCase() + "," + galaxia.toUpperCase();
         } else if (esser instanceof Vulcanians) {
             Vulcanians vul = (Vulcanians) esser;
-            contenido = vul.getNom() + "," + "vulcanians" + "," + vul.getMeditacio() + "," + planeta.getNomplan() + "," + galaxia;
+            contenido = vul.getNom() + "," + "vulcania" + "," + vul.getMeditacio() + "," + planeta.getNomplan().toLowerCase() + "," + galaxia.toUpperCase();
         }
 
         FileWriter archivo = new FileWriter(file, true);
@@ -88,7 +91,7 @@ public class Persistencia {
 
     public static void anadirPlaneta(Planeta planeta, String galaxia) throws IOException {
         String contenido = planeta.getNomplan() + "," + galaxia + "," + String.valueOf(planeta.getPoblacio_max()) + "," + planeta.getClima() + "," + planeta.getFlora_vermella() + "," + planeta.getEssers_aquatics() + "," + planeta.getLista().size();
-        File file = new File(System.getProperty("user.home") + "/.kalamus/planets.txt");
+        File file = new File(System.getProperty("user.home") + "/.kalamus/planets.csv");
         FileWriter archivo = new FileWriter(file, true);
         PrintWriter write = new PrintWriter(archivo);
         write.println(contenido);
@@ -111,11 +114,16 @@ public class Persistencia {
     }
 
     public static void cambiarDatosP(String tipodedato, String nuevodato, String planeta) throws FileNotFoundException, IOException {
-        File file = new File(System.getProperty("user.home") + "/.kalamus/planets.txt");
+        SistemasDB sis = SistemasDB.getInstance();
+        File file = new File(System.getProperty("user.home") + "/.kalamus/planets.csv");
+        Planeta plan = sis.comprobarPlaneta(planeta);
         BufferedReader archivo = new BufferedReader(new FileReader(file));
         String linea;
+        String antiguo = "0";
+        StringBuilder Output = new StringBuilder();
         while ((linea = archivo.readLine()) != null) {
-            if (linea.contains(planeta.toLowerCase())) {
+            if (linea.contains(planeta.toLowerCase()) && linea != null) {
+                antiguo = linea;
                 String[] split = linea.split(",");
                 switch (tipodedato.toLowerCase()) {
                     case "nom_planeta":
@@ -137,7 +145,10 @@ public class Persistencia {
                         split[5] = nuevodato;
                         break;
                     case "poblacio_actual":
-                        split[6] = nuevodato;
+                        System.out.println("hola");
+                        split[6] = String.valueOf(plan.getLista().size());
+                        String nuevo = String.join(",", split);
+                        Output.append(linea.replace(linea,nuevo));
                         break;
                     default:
                         System.out.println("No existe este tipo de dato.");
@@ -146,20 +157,17 @@ public class Persistencia {
 
             }
         }
-        while ((linea = archivo.readLine()) != null) {
-            if (linea.contains(planeta.toLowerCase())) {
 
-                System.out.println(linea);
-
-            }
-        }
+        
+        
 
     }
 
-    public static void generarDBP() throws FileNotFoundException, IOException {
+    public static void generarDBP() throws FileNotFoundException, IOException, PlanetaException {
+        System.out.println(".");
         SistemasDB db = SistemasDB.getInstance();
         String galaxia;
-        File file = new File(System.getProperty("user.home") + "/.kalamus/planets.txt");
+        File file = new File(System.getProperty("user.home") + "/.kalamus/planets.csv");
         BufferedReader archivo = new BufferedReader(new FileReader(file));
         String linea;
         while ((linea = archivo.readLine()) != null) {
@@ -167,62 +175,67 @@ public class Persistencia {
                 String[] split = linea.split(",");
                 galaxia = split[1];
                 Planeta añadir = new Planeta(split[0], Integer.parseInt(split[2]), Enums.elegirClima(split[3]), split[4], split[5]);
-                db.addGalaxia(galaxia);
+                if (db.comprobarGalaxia(galaxia) == null) {
+                    db.addGalaxia(galaxia);
+                }
+
                 db.addPlaneta(galaxia, añadir);
             }
         }
     }
 
-    public static void generarDBE() throws FileNotFoundException, IOException {
+    public static void generarDBE() throws FileNotFoundException, IOException, PlanetaException {
+        System.out.println(".");
         SistemasDB db = SistemasDB.getInstance();
         Planeta planeta;
-        File file = new File(System.getProperty("user.home") + "/.kalamus/planets.txt");
+        File file = new File(System.getProperty("user.home") + "/.kalamus/beings.csv");
         BufferedReader archivo = new BufferedReader(new FileReader(file));
         String linea;
         while ((linea = archivo.readLine()) != null) {
-            if (!linea.contains("nom,")) {
-                String[] split = linea.split(",");
-                switch (split[1].toLowerCase()) {
-                    case "huma":
-                        planeta = db.comprobarPlaneta(split[4]);
-                        Humans huma = new Humans(split[0], "humans", Integer.parseInt(split[2]), split[3]);
-                        planeta.addEsser(huma);
 
-                        break;
-                    case "andoria":
-                        planeta = db.comprobarPlaneta(split[3]);
-                        Andorians andor = new Andorians(split[0], "andorians", split[2]);
+            String[] split = linea.split(",");
+            switch (split[1].toLowerCase()) {
+                case "huma":
 
-                        planeta.addEsser(andor);
+                    planeta = db.comprobarPlaneta(split[4].toLowerCase());
+                    Humans huma = new Humans(split[0].toLowerCase(), "huma", Integer.parseInt(split[2]), split[3]);
+                    planeta.addEsser(huma);
 
-                        break;
-                    case "ferengi":
-                        planeta = db.comprobarPlaneta(split[3]);
-                        Ferengi fer = new Ferengi(split[0], "ferengi", Double.parseDouble(split[2]));
-                        planeta.addEsser(fer);
+                    break;
+                case "andoria":
+                    planeta = db.comprobarPlaneta(split[3].toLowerCase());
+                    Andorians andor = new Andorians(split[0].toLowerCase(), "andoria", split[2]);
 
-                        break;
-                    case "vulcania":
-                        planeta = db.comprobarPlaneta(split[3]);
-                        Vulcanians vulc = new Vulcanians(split[0], "vulcanians", Integer.parseInt(split[2]));
-                        planeta.addEsser(vulc);
-                        break;
-                    case "nibirian":
-                        planeta = db.comprobarPlaneta(split[3]);
-                        Nibirians nib = new Nibirians(split[0], "nibirians", getPeix(split[2]));
-                        planeta.addEsser(nib);
+                    planeta.addEsser(andor);
 
-                        break;
+                    break;
+                case "ferengi":
+                    planeta = db.comprobarPlaneta(split[3].toLowerCase());
+                    Ferengi fer = new Ferengi(split[0].toLowerCase(), "ferengi", Double.parseDouble(split[2]));
+                    planeta.addEsser(fer);
 
-                    case "klingon":
-                        planeta = db.comprobarPlaneta(split[3]);
-                        Klingon kling = new Klingon(split[0], "klingon", Integer.parseInt(split[2]));
-                        planeta.addEsser(kling);
+                    break;
+                case "vulcania":
+                    planeta = db.comprobarPlaneta(split[3].toLowerCase());
+                    Vulcanians vulc = new Vulcanians(split[0].toLowerCase(), "vulcania", Integer.parseInt(split[2]));
+                    planeta.addEsser(vulc);
+                    break;
+                case "nibirian":
+                    planeta = db.comprobarPlaneta(split[3].toLowerCase());
+                    Nibirians nib = new Nibirians(split[0].toLowerCase(), "nibiria", getPeix(split[2]));
+                    planeta.addEsser(nib);
 
-                        break;
+                    break;
 
-                }
+                case "klingon":
+                    planeta = db.comprobarPlaneta(split[3].toLowerCase());
+                    Klingon kling = new Klingon(split[0].toLowerCase(), "klingon", Integer.parseInt(split[2]));
+                    planeta.addEsser(kling);
+
+                    break;
+
             }
+
         }
     }
 

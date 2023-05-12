@@ -52,16 +52,16 @@ public class Enums {
         Esser nuevoesser = Esser.HUMANS;
         
         switch (nombre.toLowerCase()) {
-            case "humans":
+            case "huma":
                 nuevoesser = Esser.HUMANS;
                 break;
-            case "vulcanians":
+            case "vulcania":
                 nuevoesser = Esser.VULCANIANS;
                 break;
-            case "andorians":
+            case "andoria":
                 nuevoesser = Esser.ANDORIANS;
                 break;
-            case "nibirians":
+            case "nibiria":
                 nuevoesser = Esser.NIBIRIANS;
                 break;
             case "klingon":
